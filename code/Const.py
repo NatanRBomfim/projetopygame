@@ -1,2 +1,9 @@
 WIN_WIDTH = 576
 WIN_HEIGHT = 324
+
+COLOR_SNOW = (255, 250, 250)
+COLOR_BISQUE = (255, 228, 196)
+
+MENU_OPTION = ('NEW GAME',
+               'SCORE',
+               'EXIT')
