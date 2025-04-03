@@ -3,11 +3,14 @@ import pygame
 WIN_WIDTH = 576
 WIN_HEIGHT = 324
 
-COLOR_SNOW = (255, 250, 250)
-COLOR_BISQUE = (255, 228, 196)
-COLOR_RED = (225, 0, 0)
-COLOR_BLUE = (0,0,205)
-COLOR_YELLOW = (255,255,0)
+C_SNOW = (255, 250, 250)
+C_BISQUE = (255, 228, 196)
+C_RED = (225, 0, 0)
+C_BLUE = (0, 0, 205)
+C_YELLOW = (255, 255, 0)
+C_GREEN = (0, 128, 0)
+C_PGROD = (238, 232, 170)
+C_TOMATO = (255,99,71)
 
 EVENT_ENEMY = pygame.USEREVENT + 1
 
@@ -20,9 +23,11 @@ ENTITY_SPEED = {
     'lvl1bg5': 1,
     'lvl1bg6': 1,
     'Player1': 2,
+    'Player1Shot': 2,
     'Player2': 2,
+    'Player2Shot': 2,
     'Enemy1': 2,
-    'Enemy2': 1,
+    'Enemy2': 2,
     'Enemy3': 1
 
 }
@@ -36,9 +41,47 @@ ENTITY_HEALTH = {
     'lvl1bg5': 999,
     'lvl1bg6': 999,
     'Player1': 300,
+    'Player1Shot': 1,
     'Player2': 300,
-    'Enemy1': 50,
-    'Enemy2': 50,
+    'Player2Shot': 1,
+    'Enemy1': 60,
+    'Enemy2': 80,
+}
+ENTITY_DAMAGE = {
+    'lvl1bg0': 0,
+    'lvl1bg1': 0,
+    'lvl1bg2': 0,
+    'lvl1bg3': 0,
+    'lvl1bg4': 0,
+    'lvl1bg5': 0,
+    'lvl1bg6': 0,
+    'Player1': 1,
+    'Player1Shot': 20,
+    'Player2': 1,
+    'Player2Shot': 10,
+    'Enemy1': 100,
+    'Enemy2': 100,
+}
+
+ENTITY_SCORE = {
+    'lvl1bg0': 0,
+    'lvl1bg1': 0,
+    'lvl1bg2': 0,
+    'lvl1bg3': 0,
+    'lvl1bg4': 0,
+    'lvl1bg5': 0,
+    'lvl1bg6': 0,
+    'Player1': 0,
+    'Player1Shot': 0,
+    'Player2': 0,
+    'Player2Shot': 0,
+    'Enemy1': 100,
+    'Enemy2': 150,
+}
+
+ENTITY_SHOT_DELAY = {
+    'Player1': 35,
+    'Player2': 22,
 }
 
 MENU_OPTION = ('NEW GAME',
@@ -49,10 +92,12 @@ MENU_OPTION = ('NEW GAME',
 PLAYER_KEY_UP = {'Player1': pygame.K_UP,
                  'Player2': pygame.K_w}
 PLAYER_KEY_DOWN = {'Player1': pygame.K_DOWN,
-                 'Player2': pygame.K_s}
+                   'Player2': pygame.K_s}
 PLAYER_KEY_LEFT = {'Player1': pygame.K_LEFT,
-                 'Player2': pygame.K_a}
+                   'Player2': pygame.K_a}
 PLAYER_KEY_RIGHT = {'Player1': pygame.K_RIGHT,
-                 'Player2': pygame.K_d}
+                    'Player2': pygame.K_d}
 PLAYER_KEY_SHOOT = {'Player1': pygame.K_RCTRL,
-                 'Player2': pygame.K_f}
+                    'Player2': pygame.K_f}
+
+SPAWM_TIME = 3000

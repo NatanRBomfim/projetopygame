@@ -5,9 +5,12 @@ from pygame import Rect, Surface
 from pygame.font import Font
 
 from code import Entity
-from code.Const import WIN_HEIGHT, COLOR_YELLOW, MENU_OPTION, EVENT_ENEMY
+from code.Const import WIN_HEIGHT, C_YELLOW, MENU_OPTION, EVENT_ENEMY, SPAWM_TIME, C_GREEN, C_PGROD, C_RED, C_TOMATO, \
+    C_SNOW
+from code.Enemy import Enemy
 from code.EntityFactory import EntityFactory
 from code.EntityMediator import EntityMediator
+from code.Player import Player
 
 
 class Level:
@@ -22,7 +25,7 @@ class Level:
         self.timeout = 20000
         if game_mode in [MENU_OPTION[1]]:
             self.entity_list.append(EntityFactory.get_entity('Player2'))
-        pygame.time.set_timer(EVENT_ENEMY, 2000)
+        pygame.time.set_timer(EVENT_ENEMY, SPAWM_TIME)
 
     def run(self, ):
         pygame.mixer_music.load('./asset/sglvl1.mp3')
@@ -33,17 +36,25 @@ class Level:
             for ent in self.entity_list:
                 self.window.blit(source=ent.surf, dest=ent.rect)
                 ent.move()
+                if isinstance(ent, Player):
+                    shoot = ent.shoot()
+                    if shoot is not None:
+                        self.entity_list.append(shoot)
+                if ent.name == 'Player1':
+                    self.level_text(14, f'Player1 - Health: {ent.health} | Score: {ent.score}', C_TOMATO, (10, 25))
+                if ent.name == 'Player2':
+                    self.level_text(14, f'Player2 - Health: {ent.health} | Score: {ent.score}', C_PGROD, (10, 45))
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     quit()
                 if event.type == EVENT_ENEMY:
-                    # choice = random.choice(('Enemy1', 'Enemy2'))
-                    self.entity_list.append(EntityFactory.get_entity('Enemy1'))
+                    choice = random.choice(('Enemy1', 'Enemy2'))
+                    self.entity_list.append(EntityFactory.get_entity(choice))
 
-            self.level_text(14, f'{self.name} - Timeout: {self.timeout / 1000 :.1f}s', COLOR_YELLOW, (10, 5))
-            self.level_text(14, f'fps: {clock.get_fps() :.0f}', COLOR_YELLOW, (10, WIN_HEIGHT - 35))
-            self.level_text(14, f'entidades: {len(self.entity_list)}', COLOR_YELLOW, (10, WIN_HEIGHT - 20))
+            self.level_text(14, f'{self.name} - Timeout: {self.timeout / 1000 :.1f}s', C_YELLOW, (10, 5))
+            self.level_text(14, f'fps: {clock.get_fps() :.0f}', C_SNOW, (510, 0))
+        
             pygame.display.flip()
 
             EntityMediator.verify_collision(entity_list=self.entity_list)
