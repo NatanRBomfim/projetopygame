@@ -27,6 +27,20 @@ ENTITY_SPEED = {
 
 }
 
+ENTITY_HEALTH = {
+    'lvl1bg0': 999,
+    'lvl1bg1': 999,
+    'lvl1bg2': 999,
+    'lvl1bg3': 999,
+    'lvl1bg4': 999,
+    'lvl1bg5': 999,
+    'lvl1bg6': 999,
+    'Player1': 300,
+    'Player2': 300,
+    'Enemy1': 50,
+    'Enemy2': 50,
+}
+
 MENU_OPTION = ('NEW GAME',
                'NEW GAME 2P - COOP',
                'SCORE',

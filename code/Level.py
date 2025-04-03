@@ -7,6 +7,7 @@ from pygame.font import Font
 from code import Entity
 from code.Const import WIN_HEIGHT, COLOR_YELLOW, MENU_OPTION, EVENT_ENEMY
 from code.EntityFactory import EntityFactory
+from code.EntityMediator import EntityMediator
 
 
 class Level:
@@ -23,7 +24,7 @@ class Level:
             self.entity_list.append(EntityFactory.get_entity('Player2'))
         pygame.time.set_timer(EVENT_ENEMY, 2000)
 
-    def run (self, ):
+    def run(self, ):
         pygame.mixer_music.load('./asset/sglvl1.mp3')
         pygame.mixer_music.play(-1)
         clock = pygame.time.Clock()
@@ -37,14 +38,17 @@ class Level:
                     pygame.quit()
                     quit()
                 if event.type == EVENT_ENEMY:
-                    #choice = random.choice(('Enemy1', 'Enemy2'))
+                    # choice = random.choice(('Enemy1', 'Enemy2'))
                     self.entity_list.append(EntityFactory.get_entity('Enemy1'))
 
-
             self.level_text(14, f'{self.name} - Timeout: {self.timeout / 1000 :.1f}s', COLOR_YELLOW, (10, 5))
-            self.level_text(14, f'fps: {clock.get_fps() :.0f}', COLOR_YELLOW, (10, WIN_HEIGHT -35))
+            self.level_text(14, f'fps: {clock.get_fps() :.0f}', COLOR_YELLOW, (10, WIN_HEIGHT - 35))
             self.level_text(14, f'entidades: {len(self.entity_list)}', COLOR_YELLOW, (10, WIN_HEIGHT - 20))
             pygame.display.flip()
+
+            EntityMediator.verify_collision(entity_list=self.entity_list)
+            EntityMediator.verify_health(entity_list=self.entity_list)
+
         pass
 
     def level_text(self, text_size: int, text: str, text_color: tuple, text_pos: tuple):
