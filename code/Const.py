@@ -15,7 +15,7 @@ SCORE_POS = {'Title': (WIN_WIDTH / 2, 50),
              5: (WIN_WIDTH / 2, 210),
              6: (WIN_WIDTH / 2, 230),
              7: (WIN_WIDTH / 2, 250),
-             8: (WIN_WIDTH / 2, 270),}
+             8: (WIN_WIDTH / 2, 270), }
 
 C_SNOW = (255, 250, 250)
 C_BISQUE = (255, 228, 196)
@@ -43,7 +43,6 @@ ENTITY_SPEED = {
     'Player2Shot': 2,
     'Enemy1': 2,
     'Enemy2': 2,
-    'Enemy3': 1
 
 }
 
@@ -70,12 +69,12 @@ ENTITY_DAMAGE = {
     'lvl1bg4': 0,
     'lvl1bg5': 0,
     'lvl1bg6': 0,
-    'Player1': 1,
+    'Player1': 0,
     'Player1Shot': 20,
-    'Player2': 1,
+    'Player2': 0,
     'Player2Shot': 10,
-    'Enemy1': 100,
-    'Enemy2': 100,
+    'Enemy1': 1,
+    'Enemy2': 1,
 }
 
 ENTITY_SCORE = {
@@ -91,7 +90,8 @@ ENTITY_SCORE = {
     'Player2': 0,
     'Player2Shot': 0,
     'Enemy1': 100,
-    'Enemy2': 150,
+    'Enemy2': 125,
+
 }
 
 ENTITY_SHOT_DELAY = {
@@ -116,4 +116,3 @@ PLAYER_KEY_SHOOT = {'Player1': pygame.K_RCTRL,
                     'Player2': pygame.K_f}
 
 SPAWM_TIME = 3000
-

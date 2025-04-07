@@ -77,7 +77,7 @@ class Level:
 
             self.level_text(14, f'{self.name} - Timeout: {self.timeout / 1000 :.1f}s', C_YELLOW, (10, 5))
             self.level_text(14, f'fps: {clock.get_fps() :.0f}', C_SNOW, (510, 0))
-        
+
             pygame.display.flip()
 
             EntityMediator.verify_collision(entity_list=self.entity_list)
